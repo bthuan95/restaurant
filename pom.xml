@@ -3,4 +3,15 @@
   <groupId>com.restaurant</groupId>
   <artifactId>restaurant</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>4.0.3.RELEASE</version>
+  	</dependency>
+
+  </dependencies>
+
 </project>
