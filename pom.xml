@@ -2,16 +2,62 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.restaurant</groupId>
   <artifactId>restaurant</artifactId>
+  <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   
+  <properties>
+		<springframework.version>4.3.0.RELEASE</springframework.version>
+		<jackson.version>2.7.5</jackson.version>
+		<javax.servlet.version>3.0.1</javax.servlet.version>
+	</properties>
+  
   <dependencies>
-
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-		<artifactId>spring-webmvc</artifactId>
-		<version>4.0.3.RELEASE</version>
-  	</dependency>
-
-  </dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>restaurant</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<path>/restaurant</path>
+					</configuration>
+				</plugin>
+				<plugin>
+    					<artifactId>maven-war-plugin</artifactId>
+    					<version>2.6</version>
+    					<configuration>
+        					<failOnMissingWebXml>false</failOnMissingWebXml>
+    					</configuration>
+				</plugin>
+        		<plugin>
+            		<artifactId>maven-compiler-plugin</artifactId>
+           			<configuration>
+                		<source>1.8</source>
+                		<target>1.8</target>
+            		</configuration>
+        		</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 </project>
