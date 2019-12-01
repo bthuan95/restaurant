@@ -1,22 +1,24 @@
 package com.restaurant.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.restaurant.dao.CustomerDAO;
-import com.restaurant.entities.Customer;
+import com.restaurant.dto.CustomerDTO;
+import com.restaurant.services.CustomerService;
 
 @RestController
 public class CustomerController {
-	
-	@Autowired
-	private CustomerDAO customerDAO;
-	
-	@GetMapping("/customers")
-	public List<Customer> getCustomers() {
-		return customerDAO.list();
-	}
+
+    @Autowired
+    CustomerService personService;
+
+    @RequestMapping( value = "/person", method = RequestMethod.GET )
+    public Page<CustomerDTO> getAll( @RequestParam( "page" ) int pageIndex, @RequestParam( "size" ) int pageSize ) {
+	return personService.getCustomers( PageRequest.of( pageIndex, pageSize ) );
+    }
 }

@@ -6,45 +6,72 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <properties>
-		<springframework.version>4.3.0.RELEASE</springframework.version>
-		<jackson.version>2.7.5</jackson.version>
-		<javax.servlet.version>3.0.1</javax.servlet.version>
+		<springframework.version>5.1.0.RELEASE</springframework.version>
+		<springdata.version>2.1.0.RELEASE</springdata.version>
+		<javax.servlet.version>3.1.0</javax.servlet.version>
+		<tomcat.version>2.2</tomcat.version>
+		<maven.war.version>2.6</maven.war.version>
+		<maven.compiler.version>1.8</maven.compiler.version>
+		<hibernate.version>5.2.17.Final</hibernate.version>
+		<mysql.version>5.1.47</mysql.version>
+		<jackson.version>2.9.4</jackson.version>
+		<modelmapper.version>2.3.2</modelmapper.version>
 	</properties>
   
-  <dependencies>
+  	<dependencies>
+  		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${springdata.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${javax.servlet.version}</version>
-			<scope>provided</scope>
+		    <groupId>org.modelmapper</groupId>
+		    <artifactId>modelmapper</artifactId>
+		    <version>${modelmapper.version}</version>
 		</dependency>
 	</dependencies>
 	
 	<build>
-		<finalName>restaurant</finalName>
+		<finalName>${project.artifactId}</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat7-maven-plugin</artifactId>
-					<version>2.2</version>
+					<version>${tomcat.version}</version>
 					<configuration>
-						<path>/restaurant</path>
+						<path>/${project.artifactId}</path>
 					</configuration>
 				</plugin>
 				<plugin>
     					<artifactId>maven-war-plugin</artifactId>
-    					<version>2.6</version>
+    					<version>${maven.war.version}</version>
     					<configuration>
         					<failOnMissingWebXml>false</failOnMissingWebXml>
     					</configuration>
@@ -52,8 +79,8 @@
         		<plugin>
             		<artifactId>maven-compiler-plugin</artifactId>
            			<configuration>
-                		<source>1.8</source>
-                		<target>1.8</target>
+                		<source>${maven.compiler.version}</source>
+                		<target>${maven.compiler.version}</target>
             		</configuration>
         		</plugin>
 			</plugins>
