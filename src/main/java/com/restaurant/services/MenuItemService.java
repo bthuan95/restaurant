@@ -8,4 +8,8 @@ public interface MenuItemService {
 
     public List<MenuItemDTO> getMenuItems();
 
+    public MenuItemDTO getMenuItem( int id );
+
+    public void createMenuItem( MenuItemDTO menuItemDTO );
+
 }
