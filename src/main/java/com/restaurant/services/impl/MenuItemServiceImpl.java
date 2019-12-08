@@ -20,18 +20,32 @@ public class MenuItemServiceImpl extends DefaultMapper implements MenuItemServic
 
     @Override
     @Transactional
-    public List<MenuItemDTO> getMenuItems() {
+    public void create( MenuItemDTO menuItemDTO ) {
+	menuItemRepository.save( convertObject( menuItemDTO, MenuItem.class ) );
+    }
+
+    @Override
+    public List<MenuItemDTO> getAll() {
 	return convertList( menuItemRepository.findAll(), MenuItemDTO[].class );
     }
 
     @Override
-    public MenuItemDTO getMenuItem( int id ) {
-	return convertObject( menuItemRepository.findById( id ), MenuItemDTO.class );
+    public MenuItemDTO getById( int id ) {
+	return convertObject( menuItemRepository.findById( id ).get(), MenuItemDTO.class );
     }
 
     @Override
-    public void createMenuItem( MenuItemDTO menuItemDTO ) {
-	menuItemRepository.save( convertObject( menuItemDTO, MenuItem.class ) );
+    @Transactional
+    public void updateById( int id, MenuItemDTO menuItemDTO ) {
+	if ( menuItemRepository.findById( id ).isPresent() ) {
+	    menuItemDTO.setId( id );
+	    menuItemRepository.save( convertObject( menuItemDTO, MenuItem.class ) );
+	}
+    }
+
+    @Override
+    public void deleteById( int id ) {
+	menuItemRepository.deleteById( id );
     }
 
 }
