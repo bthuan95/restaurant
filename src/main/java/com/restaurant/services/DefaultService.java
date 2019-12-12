@@ -2,6 +2,13 @@ package com.restaurant.services;
 
 import java.util.List;
 
+/**
+ * Generic service
+ * 
+ * @author bthuan
+ *
+ * @param <T>
+ */
 public interface DefaultService<T> {
 
     public void create( T object );

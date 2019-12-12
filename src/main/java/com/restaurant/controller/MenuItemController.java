@@ -9,45 +9,65 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.restaurant.config.AppConstants;
 import com.restaurant.dto.MenuItemDTO;
 import com.restaurant.services.MenuItemService;
 
+/**
+ * Controller for Menu Item
+ * 
+ * @author bthuan
+ *
+ */
 @RestController
-@RequestMapping( MenuItemController.MENUITEM_URL )
+@RequestMapping( AppConstants.MENUITEM_URL )
 public class MenuItemController implements DefaultController<MenuItemDTO> {
 
     @Autowired
     MenuItemService menuItemService;
 
-    public static final String MENUITEM_URL = "/api/v1/menuitem";
-
+    /**
+     * Create new MenuItem
+     */
     @Override
     @RequestMapping( method = RequestMethod.POST )
     public void create( @RequestBody MenuItemDTO menuItemDTO ) {
 	menuItemService.create( menuItemDTO );
     }
 
+    /**
+     * Retrieve all MenuItems
+     */
     @Override
     @RequestMapping( method = RequestMethod.GET )
     public List<MenuItemDTO> getAll() {
 	return menuItemService.getAll();
     }
 
+    /**
+     * Retrieve MenuItem by ID
+     */
     @Override
-    @RequestMapping( value = "/{id}", method = RequestMethod.GET )
-    public MenuItemDTO getById( @PathVariable( "id" ) int id ) {
+    @RequestMapping( value = AppConstants.ID_URL, method = RequestMethod.GET )
+    public MenuItemDTO getById( @PathVariable( AppConstants.ID ) int id ) {
 	return menuItemService.getById( id );
     }
 
+    /**
+     * Update MenuItem by ID
+     */
     @Override
-    @RequestMapping( value = "/{id}", method = RequestMethod.PUT )
-    public void updateById( @PathVariable( "id" ) int id, @RequestBody MenuItemDTO menuItemDTO ) {
+    @RequestMapping( value = AppConstants.ID_URL, method = RequestMethod.PUT )
+    public void updateById( @PathVariable( AppConstants.ID ) int id, @RequestBody MenuItemDTO menuItemDTO ) {
 	menuItemService.updateById( id, menuItemDTO );
     }
 
+    /**
+     * Delete MenuItem by ID
+     */
     @Override
-    @RequestMapping( value = "/{id}", method = RequestMethod.DELETE )
-    public void deleteById( @PathVariable( "id" ) int id ) {
+    @RequestMapping( value = AppConstants.ID_URL, method = RequestMethod.DELETE )
+    public void deleteById( @PathVariable( AppConstants.ID ) int id ) {
 	menuItemService.deleteById( id );
     }
 

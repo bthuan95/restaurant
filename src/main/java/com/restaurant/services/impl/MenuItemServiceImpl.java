@@ -12,28 +12,46 @@ import com.restaurant.mapper.DefaultMapper;
 import com.restaurant.repositories.MenuItemRepository;
 import com.restaurant.services.MenuItemService;
 
+/**
+ * The service implementation for MenuItem
+ * 
+ * @author bthuan
+ *
+ */
 @Service
 public class MenuItemServiceImpl extends DefaultMapper implements MenuItemService {
 
     @Autowired
     private MenuItemRepository menuItemRepository;
 
+    /**
+     * Create new MenuItem
+     */
     @Override
     @Transactional
     public void create( MenuItemDTO menuItemDTO ) {
 	menuItemRepository.save( convertObject( menuItemDTO, MenuItem.class ) );
     }
 
+    /**
+     * Retrieve all MenuItems
+     */
     @Override
     public List<MenuItemDTO> getAll() {
 	return convertList( menuItemRepository.findAll(), MenuItemDTO[].class );
     }
 
+    /**
+     * Retrieve MenuItem by ID
+     */
     @Override
     public MenuItemDTO getById( int id ) {
 	return convertObject( menuItemRepository.findById( id ).get(), MenuItemDTO.class );
     }
 
+    /**
+     * Update MenuItem by ID
+     */
     @Override
     @Transactional
     public void updateById( int id, MenuItemDTO menuItemDTO ) {
@@ -43,7 +61,11 @@ public class MenuItemServiceImpl extends DefaultMapper implements MenuItemServic
 	}
     }
 
+    /**
+     * Delete MenuItem by ID
+     */
     @Override
+    @Transactional
     public void deleteById( int id ) {
 	menuItemRepository.deleteById( id );
     }

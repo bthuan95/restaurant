@@ -4,11 +4,15 @@ import java.math.BigDecimal;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
+/**
+ * The DTO for MenuItem
+ * 
+ * @author bthuan
+ *
+ */
 @Getter
 @Setter
-@ToString
 public class MenuItemDTO {
 
     private int id;

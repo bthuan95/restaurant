@@ -4,15 +4,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.restaurant.config.AppConstants;
-import com.restaurant.entities.MenuItem;
+import com.restaurant.entities.Bill;
 
 /**
- * Reprository for MenuItem
+ * Repository for Bill
  * 
  * @author bthuan
  *
  */
-@Repository( AppConstants.MENUITEM_REPOSITORY )
-public interface MenuItemRepository extends JpaRepository<MenuItem, Integer> {
+@Repository( AppConstants.BILL_REPOSITORY )
+public interface BillRepository extends JpaRepository<Bill, Integer> {
 
 }

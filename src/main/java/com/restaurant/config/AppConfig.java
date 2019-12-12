@@ -30,25 +30,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@PropertySource( "classpath:application.properties" )
-@ComponentScan( basePackages = "com.restaurant" )
-@EnableJpaRepositories( basePackages = "com.restaurant.repositories" )
+@PropertySource( AppConstants.APPLICATION_PROPERTIES )
+@ComponentScan( basePackages = AppConstants.BASE_PACKAGE )
+@EnableJpaRepositories( basePackages = AppConstants.REPOSITORIES_PACKAGE )
 public class AppConfig {
 
     @Autowired
     private Environment environment;
-
-    // define static string for configuring
-    private static final String JDBC_DRIVER = "jdbc.driver";
-    private static final String JDBC_URL = "jdbc.url";
-    private static final String JDBC_USERNAME = "jdbc.username";
-    private static final String JDBC_PASSWORD = "jdbc.password";
-
-    private static final String HIBERNATE_DIALECT = "hibernate.dialect";
-    private static final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-    private static final String HIBERNATE_DDL_AUTO = "hibernate.ddl.auto";
-
-    private static final String ENTITIES_PACKAGE = "com.restaurant.entities";
 
     public AppConfig() {
 	super();
@@ -62,10 +50,10 @@ public class AppConfig {
     @Bean
     public DataSource dataSource() {
 	final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-	dataSource.setDriverClassName( environment.getProperty( JDBC_DRIVER ) );
-	dataSource.setUrl( environment.getProperty( JDBC_URL ) );
-	dataSource.setUsername( environment.getProperty( JDBC_USERNAME ) );
-	dataSource.setPassword( environment.getProperty( JDBC_PASSWORD ) );
+	dataSource.setDriverClassName( environment.getProperty( AppConstants.JDBC_DRIVER ) );
+	dataSource.setUrl( environment.getProperty( AppConstants.JDBC_URL ) );
+	dataSource.setUsername( environment.getProperty( AppConstants.JDBC_USERNAME ) );
+	dataSource.setPassword( environment.getProperty( AppConstants.JDBC_PASSWORD ) );
 
 	return dataSource;
     }
@@ -79,7 +67,7 @@ public class AppConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 	final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 	entityManagerFactoryBean.setDataSource( dataSource() );
-	entityManagerFactoryBean.setPackagesToScan( new String[] { ENTITIES_PACKAGE } );
+	entityManagerFactoryBean.setPackagesToScan( new String[] { AppConstants.ENTITIES_PACKAGE } );
 
 	final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	entityManagerFactoryBean.setJpaVendorAdapter( vendorAdapter );
@@ -95,9 +83,9 @@ public class AppConfig {
      */
     final Properties initProperties() {
 	final Properties hibernateProperties = new Properties();
-	hibernateProperties.setProperty( HIBERNATE_DIALECT, environment.getProperty( HIBERNATE_DIALECT ) );
-	hibernateProperties.setProperty( HIBERNATE_DDL_AUTO, environment.getProperty( HIBERNATE_DDL_AUTO ) );
-	hibernateProperties.setProperty( HIBERNATE_SHOW_SQL, environment.getProperty( HIBERNATE_SHOW_SQL ) );
+	hibernateProperties.setProperty( AppConstants.HIBERNATE_DIALECT, environment.getProperty( AppConstants.HIBERNATE_DIALECT ) );
+	hibernateProperties.setProperty( AppConstants.HIBERNATE_DDL_AUTO, environment.getProperty( AppConstants.HIBERNATE_DDL_AUTO ) );
+	hibernateProperties.setProperty( AppConstants.HIBERNATE_SHOW_SQL, environment.getProperty( AppConstants.HIBERNATE_SHOW_SQL ) );
 
 	return hibernateProperties;
     }

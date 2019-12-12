@@ -11,32 +11,38 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
+import com.restaurant.config.AppConstants;
+
+/**
+ * The entity for MenuItem table
+ * 
+ * @author bthuan
+ *
+ */
 @Entity
-@Table( name = "menuitem" )
+@Table( name = AppConstants.MENU_ITEM )
 @Getter
 @Setter
-@ToString
 public class MenuItem {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column( name = "id" )
+    @Column( name = AppConstants.ID )
     private int id;
 
-    @Column( name = "name", nullable = false )
+    @Column( name = AppConstants.NAME, nullable = false )
     private String name;
 
-    @Column( name = "description" )
+    @Column( name = AppConstants.DESCRIPTION )
     private String description;
 
-    @Column( name = "imageURL", nullable = false )
+    @Column( name = AppConstants.IMAGE_URL, nullable = false )
     private String imageURL;
 
-    @Column( name = "price", nullable = false )
+    @Column( name = AppConstants.PRICE, nullable = false )
     private BigDecimal price;
 
-    @Column( name = "details" )
+    @Column( name = AppConstants.DETAILS )
     private String details;
 
 }

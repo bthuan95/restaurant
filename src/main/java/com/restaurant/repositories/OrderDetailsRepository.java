@@ -4,15 +4,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.restaurant.config.AppConstants;
-import com.restaurant.entities.MenuItem;
+import com.restaurant.entities.OrderDetails;
 
 /**
- * Reprository for MenuItem
+ * Repository for Order Details
  * 
  * @author bthuan
  *
  */
-@Repository( AppConstants.MENUITEM_REPOSITORY )
-public interface MenuItemRepository extends JpaRepository<MenuItem, Integer> {
+@Repository( AppConstants.ORDERDETAILS_REPOSITORY )
+public interface OrderDetailsRepository extends JpaRepository<OrderDetails, Integer> {
 
 }
