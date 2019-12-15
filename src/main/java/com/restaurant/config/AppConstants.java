@@ -20,11 +20,14 @@ public class AppConstants {
     public static final String MENUITEM_URL = "/api/v1/menuitem";
     public static final String BILL_URL = "/api/v1/bill";
     public static final String ID_URL = "/{id}";
+    public static final String DELETE_ORDER_URL = "/{billID}/orderDetails/{orderDetailsID}";
 
     public static final String MENU_ITEM = "menuitem";
     public static final String BILL = "bill";
+    public static final String BILL_ID = "billID";
     public static final String ORDER_DETAILS = "orderdetails";
     public static final String ID = "id";
+    public static final String ORDERDETAILS_ID = "orderDetailsID";
     public static final String NAME = "name";
     public static final String DESCRIPTION = "description";
     public static final String IMAGE_URL = "imageURL";

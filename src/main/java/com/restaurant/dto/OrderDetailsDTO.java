@@ -5,6 +5,8 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The DTO for Order Details
  * 
@@ -19,5 +21,9 @@ public class OrderDetailsDTO {
     private int quantity;
     private Date orderedTime;
     private MenuItemDTO menuItem;
+
+    // Json parser ignored to avoid Infinite recursion
+    @JsonIgnore
+    private BillDTO bill;
 
 }

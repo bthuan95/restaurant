@@ -10,4 +10,6 @@ import com.restaurant.dto.BillDTO;
  */
 public interface BillService extends DefaultService<BillDTO> {
 
+    public void deleteOrderDetails( int billID, int orderDetailsID );
+
 }
